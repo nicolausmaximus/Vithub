@@ -1,6 +1,5 @@
 const express = require('express')
 const path = require('path')
-const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const User = require('./model/user')
 const bcrypt = require('bcryptjs')
@@ -88,7 +87,7 @@ app.post('/api/register', async (req, res) => {
 		return res.json({ status: 'error', error: 'Invalid password' })
 	}
 
-	if (plainTextPassword.length < 5) {
+	if (plainTextPassword.length < 8) {
 		return res.json({
 			status: 'error',
 			error: 'Password too small. Should be atleast 6 characters'
