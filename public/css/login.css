@@ -1,0 +1,39 @@
+.container {
+  border: 2px solid rgb(0, 0, 0);
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+.container-2{
+        margin: 20px 20px 20px 20px;
+}
+h1 {
+  text-align: center;
+
+  font-size: 24px;
+  padding: 20px 0 20px 0;
+}
+input[type="password"],
+input[type="email"],
+input[type="text"] {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #dddddd;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #05325f;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
