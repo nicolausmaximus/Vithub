@@ -16,6 +16,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true
 }));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
