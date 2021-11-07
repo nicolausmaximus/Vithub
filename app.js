@@ -36,19 +36,19 @@ app.post('/login', async (request, response) => {
 		connection.query('SELECT password FROM accounts WHERE username = ? AND email=?', [username, email], async (error, results, fields) => {
 			if (error) throw error;
 			if (results.length > 0) {
-				const res= await bcrypt.compare(password, results[0].password);
+				const res = await bcrypt.compare(password, results[0].password);
 				console.log(res);
 				if (res) {
-						request.session.loggedin = true;
-						request.session.username = username;
-						response.redirect('/home');
-						response.end();
-					}
-					else{
+					request.session.loggedin = true;
+					request.session.username = username;
+					response.redirect('/home');
+					response.end();
+				}
+				else {
 					response.send('Please enter valid Details!');
 					response.end();
-					}
-					response.end();
+				}
+				response.end();
 			}
 			else {
 				response.send('Incorrect Username and/or Password!');
@@ -86,16 +86,18 @@ app.post('/register', async (request, response) => {
 		response.end();
 	}
 });
-
 app.get('/home', function (request, response) {
 	if (request.session.loggedin) {
-		response.send('Welcome, ' + request.session.username + '!');
+		let usrname = request.session.username;
+		response.send(`<div align ='center'><h2>Login successful</h2></div><br><br><br><div align ='center'><h3>Hello ${usrname}</h3>
+		</div><br><br><div align='center'><a href='http://127.0.0.1:6100/'>DBMS</a></div>
+		</div><br><br><div align='center'><a href='./login.html'>logout</a></div>`);
 	} else {
 		response.send('Please login to view this page!');
 	}
 	response.end();
 });
 
-app.listen(3000, function () {
-	console.log('Node app is running on port 3000');
+app.listen(8200, function () {
+	console.log('Node app is running on port 8200');
 });
