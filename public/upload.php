@@ -34,11 +34,11 @@ if (isset($_POST['submit']))
             // insert file details into database
             $sql = "INSERT INTO tbl_files(filename, created) VALUES('$filename', '$created')";
             mysqli_query($con, $sql);
-            header("Location: index.php?st=success");
+            header("Location: upload_db.php?st=success");
         }
         else
         {
-            header("Location: index.php?st=error");
+            header("Location: upload_db.php?st=error");
         }
     }
     else

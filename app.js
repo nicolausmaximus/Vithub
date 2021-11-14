@@ -89,9 +89,7 @@ app.post('/register', async (request, response) => {
 app.get('/home', function (request, response) {
 	if (request.session.loggedin) {
 		let usrname = request.session.username;
-		response.send(`<div align ='center'><h2>Login successful</h2></div><br><br><br><div align ='center'><h3>Hello ${usrname}</h3>
-		</div><br><br><div align='center'><a href='http://127.0.0.1:6100/'>DBMS</a></div>
-		</div><br><br><div align='center'><a href='./login.html'>logout</a></div>`);
+		response.redirect('/index.html');
 	} else {
 		response.send('Please login to view this page!');
 	}
