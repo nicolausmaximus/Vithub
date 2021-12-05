@@ -1,7 +1,8 @@
 var mysql = require('mysql');
 var express = require('express');
-var session = require('express-session');
+
 var path = require('path');
+var session = require('express-session');
 const bcrypt = require('bcrypt');
 var connection = mysql.createConnection({
 	host: 'localhost',
@@ -14,10 +15,10 @@ var app = express();
 app.use(session({
 	secret: 'secret',
 	resave: false,
-	saveUninitialized: true
+	saveUninitialized: false
 }));
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
 app.get('/login', function (request, response) {
