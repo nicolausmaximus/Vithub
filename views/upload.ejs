@@ -2,213 +2,152 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>VITHUB- A portal for study materials</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>VITHUB- A portal for study materials</title>
 
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 
-    <link href="/css/styles_cs.css" rel="stylesheet" />
-    <style>
-            .btn-upload{
-                    margin-top: 10px;
-            }
-            .msg{
-                margin-left: 25%;
-margin-top: 10px;
-            }
+        <link href="/css/styles_cs.css" rel="stylesheet" />
+        <style>
+                .btn-upload {
+                        margin-top: 10px;
+                }
 
-
-
-            *,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
-
-html {
-  font-size: 62.5%;
-  scroll-behavior: smooth;
-}
-
-.admin {
-  margin-left: 50%;
-  margin-top: 7rem;
-  transform: translateX(-30%);
-}
-
-.admin__input {
-  border: none;
-  background-color: #41398e;
-  padding: 1rem 1.8rem;
-  color: #e2e0e0;
-  border-radius: 10rem;
-  margin-right: 2.5rem;
-}
-
-.admin__submit {
-  border: none;
-  background-color: #603556;
-  padding: 1rem 1.8rem;
-  color: #e2e0e0;
-  border-radius: 10rem;
-  cursor: pointer;
-}
-
-.admin__submit:focus {
-  outline: none;
-}
-
-.files__entity {
-  background-color: lightgray;
-  display: inline-block;
-  padding: 5px 10px;
-  text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-}
-
-
-
-
-    </style>
+                .msg {
+                        margin-left: 25%;
+                        margin-top: 10px;
+                }
+        </style>
 </head>
 
 <body class="d-flex flex-column h-100">
-    <main class="flex-shrink-0">
+        <main class="flex-shrink-0">
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container px-5">
-                <a class="navbar-brand" href="http://localhost:8200/">VITHUB </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="http://localhost:8200/">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#upload">Upload</a></li>
-                        <li class="nav-item"><a class="nav-link" href="http://localhost:8200/login">Log Out </a></li>
-
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <!-- Header-->
-        <header class="bg-dark py-5" id="upload">
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center justify-content-center">
-                    <div class="col-lg-8 col-xl-7 col-xxl-6">
-                        <div class="my-5 text-center text-xl-start">
-                            <h1 class="display-5 fw-bolder text-white mb-2">Database Management System</h1>
-
-                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
-
-
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                        <div class="container px-5">
+                            <a class="navbar-brand" href="/dashboard">VITHUB </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation"><span
+                                    class="navbar-toggler-icon"></span></button>
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                    <li class="nav-item"><a class="nav-link" href="/dashboard">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#upload">Upload</a></li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <%=username%>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                                            <li><a class="dropdown-item" href="/logout"> Log Out</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
-                        <form class="form-horizontal" role="form" method="post" action="/dashboard/cs/dbms" enctype="multipart/form-data">
-                                 <div class="form-group">
-                                    <div class="col-sm-9">
-                                        <input class="form-control" type="file" name="dataFile" accept=""/>
-                                    </div>
-                                </div>                                
-                                <div class="form-group">
-                                    <!-- Button -->                                       
-                                    <div class="col-md-offset-3 col-md-9 btn-upload">
-                                        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Upload</button>
-</div>
-                                    <% if (message.length > 0) { %>
-                                        <div class="alert-danger col-md-3 msg"><%= message %></div>
-                                    <% } %>
-                                </div>  
-                        
-                            </form>
-                    </div>
+                    </nav>
+                <!-- Header-->
+                <header class="bg-dark py-5" id="upload">
+                        <div class="container px-5">
+                                <div class="row gx-5 align-items-center justify-content-center">
+                                        <div class="col-lg-8 col-xl-7 col-xxl-6">
+                                                <div class="my-5 text-center text-xl-start">
+                                                        <h1 class="display-5 fw-bolder text-white mb-2">Database
+                                                                Management System</h1>
+
+                                                        <div
+                                                                class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+
+
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center">
+                                                <form class="form-horizontal" role="form" method="post"
+                                                        action="/dashboard/cs/dbms" enctype="multipart/form-data">
+                                                        <div class="form-group">
+                                                                <div class="col-sm-9">
+                                                                        <input class="form-control" type="file"
+                                                                                name="dataFile" accept="" />
+                                                                </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                                <!-- Button -->
+                                                                <div class="col-md-offset-3 col-md-9 btn-upload">
+                                                                        <button id="btn-signup" type="submit"
+                                                                                class="btn btn-info"><i
+                                                                                        class="icon-hand-right"></i>
+                                                                                &nbsp Upload</button>
+                                                                </div>
+                                                                <% if (message.length> 0) { %>
+                                                                        <div class="alert-danger col-md-3 msg">
+                                                                                <%= message %>
+                                                                        </div>
+                                                                        <% } %>
+                                                        </div>
+
+                                                </form>
+                                        </div>
+                                </div>
+                        </div>
+                </header>
+
+
+                <div class="row">
+                        <div class="col-xs-8 col-xs-offset-2">
+                                <table class="table table-striped table-hover admin">
+                                        <thead>
+                                                <tr>
+                                                        <th>#</th>
+                                                        <th>File Name</th>
+                                                        <th>View</th>
+                                                        <th>Download</th>
+                                                </tr>
+                                        </thead>
+                                        <% if(userData.length!=0){ var i=1; userData.forEach(function(data){ %>
+                                                <tr>
+                                                        <td>
+                                                                <%=i%>
+                                                        </td>
+                                                        <td>
+                                                                <%=data.name %>
+                                                        </td>
+                                                        <td><a href="/users/edit/<%=data.id%>">Edit</a></td>
+                                                        <td><a href="/users/delete/<%=data.id%>">Delete</a></td>
+                                                </tr>
+                                                <% i++; }) %>
+                                                        <% } else{ %>
+                                                                <tr>
+                                                                        <td colspan="7">No Data Found</td>
+                                                                </tr>
+                                                                <% } %>
+                                </table>
+                        </div>
                 </div>
-            </div>
-        </header>
+        </main>
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+                <div class="container px-5">
+                        <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                                <div class="col-auto">
+                                        <div class="small m-0 text-white">Made with ❤️ for all the VITIANS</div>
+                                </div>
 
-
-        <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
-                <table class="table table-striped table-hover admin">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>File Name</th>
-                            <th>View</th>
-                            <th>Download</th>
-                        </tr>
-                    </thead>
-                    <%
-                    if(userData.length!=0){
-                    var i=1;
-                    userData.forEach(function(data){
-                    %>
-                    <tr>
-                            <td><%=i%></td>
-                        <td><%=data.name %></td>
-                        <td><a href="/users/edit/<%=data.id%>">Edit</a></td>
-                        <td><a href="/users/delete/<%=data.id%>">Delete</a></td>
-                    </tr>
-                    <%  i++; }) %>
-                    <% } else{ %>
-                        <tr>
-                            <td colspan="7">No Data Found</td>
-                        </tr>
-                    <% } %>
-                </table>
-            </div>
-        </div>
-    </main>
-    <!-- Footer-->
-    <footer class="bg-dark py-4 mt-auto">
-        <div class="container px-5">
-            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                <div class="col-auto">
-                    <div class="small m-0 text-white">Made with ❤️ for all the VITIANS</div>
+                        </div>
                 </div>
-
-            </div>
-        </div>
-    </footer>
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="/js/scripts.js"></script>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="/js/scripts.js"></script>
 </body>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script>
-        const parentDiv = document.querySelector(".admin");
-        window.addEventListener("load", async () => {
-          try {
-            let result = await axios({
-              method: "GET",
-              url: "/api/getFiles",
-            });
-            let files = result.data.files;
-      
-            files.forEach((file) => {
-              markup = `
-                    <div class="files__entity">
-                      <i class="files__icon fa fa-file-text" aria-hidden="true"></i>
-                      <span class="files__date">Date created:- ${file.createdAt}</span>
-                      <a href="${file.name}" class="files__link"><i class="fa fa-eye tests__icon" aria-hidden="true"></i></a>
-                    </div>
-                  `;
-              parentDiv.insertAdjacentHTML("beforeend", markup);
-            });
-          } catch (error) {
-            console.log(error);
-          }
-        });
-      </script>
-      
+
+
 </html>

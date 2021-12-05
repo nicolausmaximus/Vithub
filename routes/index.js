@@ -120,28 +120,30 @@ exports.cs = function (req, res) {
 
 exports.dbms = function (req, res) {
         if (req.method == "POST") {
+                username = req.session.username;
                 const file = req.file;
                 if (!file) {
                         message = 'Invalid file';
                         var sql = 'SELECT * FROM files';
                         db.query(sql, function (err, data) {
                                 if (err) throw err;
-                                res.render('upload', { message: message, userData: data });
+                                res.render('upload', { message: message, userData: data,username:username });
                         });
                 }
                 else {
                         var sql = "INSERT INTO files(name) VALUE ('" + req.file.filename + "')";
-                        db.query(sql, function (err, result) {
+                        db.query(sql, function (err, data) {
                                 if (err) {
                                         message = 'Invalid file';
-                                        res.render('upload', { message });
+                                        res.render('upload', { message: message, userData: data,username:username });
                                 }
                                 else {
-                                        message='Successful'
+                                        message='Successful';
+                                        username = req.session.username;
                                         var sql = 'SELECT * FROM files';
                         db.query(sql, function (err, data, fields) {
                                 if (err) throw err;
-                                res.render('upload', { message: message, userData: data });
+                                res.render('upload', { message: message, userData: data,username:username });
                         });
                                 }
                         });
@@ -159,7 +161,7 @@ exports.dbms = function (req, res) {
                         var sql = 'SELECT * FROM files';
                         db.query(sql, function (err, data, fields) {
                                 if (err) throw err;
-                                res.render('upload', { message: message, userData: data });
+                                res.render('upload', { message: message, userData: data,username:username });
                         });
                 }
         }

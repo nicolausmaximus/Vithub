@@ -6,7 +6,7 @@ var path = require('path');
 var multer = require('multer');
 const fs = require('fs');
 var session = require('express-session');
-var port = process.env.PORT || 8200;
+var port = process.env.PORT || 3000;
 global.bcrypt = require('bcrypt');
 var connection = mysql.createConnection({
 	host: 'localhost',
@@ -48,7 +48,7 @@ var upload = multer({ storage: storage });
 var app = express();
 app.use(session({
 	secret: 'secret',
-	resave: false,
+	resave: true,
 	saveUninitialized: true,
 	cookie: { maxAge: 60000 }
 }));
