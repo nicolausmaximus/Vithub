@@ -12,14 +12,14 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 
-    <link href="css/login_styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/styles.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet"href="css/login_styles.css" />
+    <link type="text/css" rel="stylesheet"href="css/styles.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container px-5">
-            <a class="navbar-brand" href="index.html">VITHUB </a>
+            <a class="navbar-brand" href="index.ejs">VITHUB </a>
 
         </div>
     </nav>
@@ -30,6 +30,9 @@
                     <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/draw2.png" class="img-fluid" alt="Sample image">
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <% if (message.length > 0) { %>
+                        <div class="alert alert-danger col-sm-12"><%= message %></div>
+                        <% } %>
                     <form action="login" method="POST">
 
 
@@ -64,7 +67,7 @@
 
                         <div class="text-center text-lg-start mt-4 pt-2">
                             <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-                            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="registration.html" class="link-danger">Register</a></p>
+                            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="register" class="link-danger">Register</a></p>
                         </div>
 
                     </form>

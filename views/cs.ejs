@@ -8,27 +8,36 @@
     <meta name="author" content="" />
     <title>VITHUB- A portal for study materials</title>
 
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 
-    <link href="css/styles_cs.css" rel="stylesheet" />
+    <link type="text/css" href="/css/styles_cs.css" rel="stylesheet" />
 </head>
 
 <body class="d-flex flex-column h-100">
     <main class="flex-shrink-0">
-
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-5">
-                <a class="navbar-brand" href="index.html">VITHUB </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <a class="navbar-brand" href="/dashboard">VITHUB </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation"><span
+                        class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#upload">Upload</a></li>
-                        <li class="nav-item"><a class="nav-link" href="index.html">Log Out </a></li>
-
-
+                        <li class="nav-item"><a class="nav-link" href="/dashboard">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/dashboard">Upload</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <%=username%>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" href="/logout"> Log Out</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -47,7 +56,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="assets\cs-land.jpg" alt="..." /></div>
+                    <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="/assets/cs-land.jpg" alt="..." /></div>
                 </div>
             </div>
         </header>
@@ -66,7 +75,7 @@
                 <div class="row gx-5">
                     <div class="col-lg-4 mb-5">
                         <div class="card h-70 shadow border-0">
-                            <img class="card-img-top" src="assets\dbms.png" alt="..." />
+                            <img class="card-img-top" src="/assets/dbms.png" alt="..." />
                             <div class="card-body p-4">
                                 <div class="badge bg-primary bg-gradient rounded-pill mb-2">Explore</div>
                                 <a class="text-decoration-none link-dark stretched-link" href="http://localhost:3100/upload_db.php">
@@ -78,7 +87,7 @@
                     </div>
                     <div class="col-lg-4 mb-5">
                         <div class="card h-70 shadow border-0">
-                            <img class="card-img-top" src="assets\dsa.png" alt="..." />
+                            <img class="card-img-top" src="/assets/dsa.png" alt="..." />
                             <div class="card-body p-4">
                                 <div class="badge bg-primary bg-gradient rounded-pill mb-2">Explore</div>
                                 <a class="text-decoration-none link-dark stretched-link" href="#!">
@@ -90,7 +99,7 @@
                     </div>
                     <div class="col-lg-4 mb-5">
                         <div class="card h-70 shadow border-0">
-                            <img class="card-img-top" src="assets\coa.png" alt="..." />
+                            <img class="card-img-top" src="/assets/coa.png" alt="..." />
                             <div class="card-body p-4">
                                 <div class="badge bg-primary bg-gradient rounded-pill mb-2">Explore</div>
                                 <a class="text-decoration-none link-dark stretched-link" href="#!">
@@ -105,7 +114,7 @@
                 <div class="row gx-5">
                     <div class="col-lg-4 mb-5">
                         <div class="card h-70 shadow border-0">
-                            <img class="card-img-top" src="assets\os.png" alt="..." />
+                            <img class="card-img-top" src="/assets/os.png" alt="..." />
                             <div class="card-body p-4">
                                 <div class="badge bg-primary bg-gradient rounded-pill mb-2">Explore</div>
                                 <a class="text-decoration-none link-dark stretched-link" href="#!">
@@ -117,7 +126,7 @@
                     </div>
                     <div class="col-lg-4 mb-5">
                         <div class="card h-70 shadow border-0">
-                            <img class="card-img-top" src="assets\cn.png" alt="..." />
+                            <img class="card-img-top" src="/assets/cn.png" alt="..." />
                             <div class="card-body p-4">
                                 <div class="badge bg-primary bg-gradient rounded-pill mb-2">Explore</div>
                                 <a class="text-decoration-none link-dark stretched-link" href="#!">
@@ -129,7 +138,7 @@
                     </div>
                     <div class="col-lg-4 mb-5">
                         <div class="card h-70 shadow border-0">
-                            <img class="card-img-top" src="assets\ml.png" alt="..." />
+                            <img class="card-img-top" src="/assets/ml.png" alt="..." />
                             <div class="card-body p-4">
                                 <div class="badge bg-primary bg-gradient rounded-pill mb-2">Explore</div>
                                 <a class="text-decoration-none link-dark stretched-link" href="#!">
@@ -174,7 +183,7 @@
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    <script src="/js/scripts.js"></script>
 </body>
 
 </html>

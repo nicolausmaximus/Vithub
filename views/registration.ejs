@@ -32,7 +32,9 @@
                                         </div>
                                     </nav>
                                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-
+                                    <% if (message.length > 0) { %>
+                                        <div class="alert alert-danger col-sm-12"><%= message %></div>
+                                        <% } %>
                                     <form action="register" method="POST" class="mx-1 mx-md-4">
 
                                         <div class="d-flex flex-row align-items-center mb-4">
