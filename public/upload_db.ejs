@@ -1,11 +1,3 @@
-<?php
-include_once 'dbconnect.php';
-
-// fetch files
-$sql = "select filename from tbl_files";
-$result = mysqli_query($con, $sql);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +12,7 @@ $result = mysqli_query($con, $sql);
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 
-    <link href="css/styles_cs.css" rel="stylesheet" />
+    <link href="/css/styles_cs.css" rel="stylesheet" />
 </head>
 
 <body class="d-flex flex-column h-100">
