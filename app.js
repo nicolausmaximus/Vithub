@@ -17,7 +17,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false
 }));
-
+app.set('port', process.env.PORT || 8080);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
@@ -97,6 +97,6 @@ app.get('/home', function (request, response) {
 	response.end();
 });
 
-app.listen(8200, function () {
-	console.log('Node app is running on port 8200');
-});
+app.listen(process.env.PORT || 3000, function(){
+	console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+      });
