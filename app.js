@@ -48,7 +48,7 @@ var upload = multer({ storage: storage });
 var app = express();
 app.use(session({
 	secret: 'secret',
-	resave: true,
+	resave: false,
 	saveUninitialized: true,
 	cookie: { maxAge: 60000 }
 }));
