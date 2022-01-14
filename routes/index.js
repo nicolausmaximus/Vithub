@@ -225,6 +225,24 @@ exports.uploadFile = async function(req, res) {
                 });
 
 
+                try {
+                    var fileId = '1LWbqZaNtf6brk9Qro5z7_1HSgMH_v8gN';
+                    var dest = fs.createWriteStream('/tmp/image');
+                    drive.files.get({ fileId: fileId, alt: 'media' }, { responseType: 'stream' },
+                        function(err, res) {
+                            res.data
+                                .on('end', () => {
+                                    console.log('Done');
+                                })
+                                .on('error', err => {
+                                    console.log('Error', err);
+                                })
+                                .pipe(dest);
+                        }
+                    );
+                } catch (error) {
+                    console.log(error);
+                }
 
             } catch (error) {
                 console.log(error.message);
