@@ -1,13 +1,12 @@
 var mysql = require('mysql');
-mysql: //b9dff8be487326:a7ac0c49@eu-cdbr-west-02.cleardb.net/heroku_c6ea23498e43ba4?reconnect=true
-    var express = require('express');
+var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 const fs = require('fs');
 var session = require('express-session');
 const sessionstore = new session.MemoryStore();
-var port = process.env.PORT || 9999;
+var port = process.env.PORT || 5739;
 global.bcrypt = require('bcrypt');
 var connection = mysql.createConnection({
     host: 'eu-cdbr-west-02.cleardb.net',

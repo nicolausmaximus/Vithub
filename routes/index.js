@@ -32,7 +32,9 @@ exports.index = async function(req, res) {
         } else {
             res.send('Please enter Username and Password!');
             res.end();
+
         }
+
 
     } else {
         message = '';
