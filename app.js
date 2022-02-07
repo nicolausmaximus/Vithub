@@ -3,11 +3,10 @@ var express = require('express');
 var routes = require('./routes');
 var http = require('http');
 var path = require('path');
-var multer = require('multer');
 const fs = require('fs');
 var session = require('express-session');
 const sessionstore = new session.MemoryStore();
-var port = process.env.PORT || 3432;
+var port = process.env.PORT || 8786;
 global.bcrypt = require('bcrypt');
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -17,21 +16,6 @@ var connection = mysql.createConnection({
 });
 connection.connect();
 global.db = connection;
-
-
-//api
-
-
-var storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, './public/uploads');
-    },
-    filename: function(req, file, cb) {
-        cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`);
-    }
-});
-
-var upload = multer({ storage: storage });
 
 
 var app = express();
