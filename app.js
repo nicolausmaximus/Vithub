@@ -6,7 +6,8 @@ var path = require('path');
 var multer = require('multer');
 const fs = require('fs');
 var session = require('express-session');
-var port = process.env.PORT || 3000;
+const sessionstore = new session.MemoryStore();
+var port = process.env.PORT || 3432;
 global.bcrypt = require('bcrypt');
 var connection = mysql.createConnection({
     host: 'localhost',
@@ -38,10 +39,20 @@ app.use(session({
     secret: 'secret',
     resave: true,
     saveUninitialized: true,
-    cookie: { maxAge: 60000 }
+    sessionstore,
+    cookie: { maxAge: 1000 * 60 * 60 },
 }));
 
-app.use(express.urlencoded({ extended: false }));
+function sessionCleanup() {
+    sessionstore.all(function(err, sessions) {
+        for (var i = 0; i < sessions.length; i++) {
+            sessionstore.get(sessions[i], function() {});
+        }
+    });
+}
+
+setInterval(sessionCleanup, 5 * 60 * 60 * 1000);
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
@@ -58,21 +69,10 @@ app.get('/dashboard/cs', routes.cs);
 app.get('/logout', routes.logout);
 app.get('/profile', routes.profile);
 app.get('/dashboard/cs/dbms', routes.uploadFile);
-app.post('/dashboard/cs/dbms', upload.single('dataFile'), routes.uploadFile);
-app.get("/api/getFiles", async(req, res) => {
-    try {
-        const files = await File.find();
-        res.status(200).json({
-            status: "success",
-            files,
-        });
-    } catch (error) {
-        res.json({
-            status: "Fail",
-            error,
-        });
-    }
-});
+app.post('/dashboard/cs/dbms', routes.uploadFile);
+
+app.get('/dashboard/cs/dbms/view', routes.downloadFile);
+app.post('/dashboard/cs/dbms/view', routes.downloadFile);
 
 app.listen(port, function() {
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);

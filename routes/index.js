@@ -1,3 +1,4 @@
+const sessionStorage = require('node-sessionstorage');
 exports.index = async function(req, res) {
     var message = '';
     var sess = req.session;
@@ -115,50 +116,50 @@ exports.cs = function(req, res) {
 };
 
 
-exports.dbms = function(req, res) {
-    if (req.method == "POST") {
-        username = req.session.username;
-        const file = req.file;
-        if (!file) {
-            message = 'Invalid file';
-            var sql = 'SELECT * FROM files';
-            db.query(sql, function(err, data) {
-                if (err) throw err;
-                res.render('upload', { message: message, userData: data, username: username });
-            });
-        } else {
-            var sql = "INSERT INTO files(name) VALUE ('" + req.file.filename + "')";
-            db.query(sql, function(err, data) {
-                if (err) {
-                    message = 'Invalid file';
-                    res.render('upload', { message: message, userData: data, username: username });
-                } else {
-                    message = 'Successful';
-                    username = req.session.username;
-                    var sql = 'SELECT * FROM files';
-                    db.query(sql, function(err, data, fields) {
-                        if (err) throw err;
-                        res.render('upload', { message: message, userData: data, username: username });
-                    });
-                }
-            });
-        }
-    } else {
-        username = req.session.username;
-        email = req.session.email;
-        message = '';
-        if (!username && !email) {
-            res.redirect("/login");
-            return;
-        } else {
-            var sql = 'SELECT * FROM files';
-            db.query(sql, function(err, data, fields) {
-                if (err) throw err;
-                res.render('upload', { message: message, userData: data, username: username });
-            });
-        }
-    }
-};
+// exports.dbms = function(req, res) {
+//     if (req.method == "POST") {
+//         username = req.session.username;
+//         const file = req.file;
+//         if (!file) {
+//             message = 'Invalid file';
+//             var sql = 'SELECT * FROM files';
+//             db.query(sql, function(err, data) {
+//                 if (err) throw err;
+//                 res.render('upload', { message: message, userData: data, username: username });
+//             });
+//         } else {
+//             var sql = "INSERT INTO files(name) VALUE ('" + req.file.filename + "')";
+//             db.query(sql, function(err, data) {
+//                 if (err) {
+//                     message = 'Invalid file';
+//                     res.render('upload', { message: message, userData: data, username: username });
+//                 } else {
+//                     message = 'Successful';
+//                     username = req.session.username;
+//                     var sql = 'SELECT * FROM files';
+//                     db.query(sql, function(err, data, fields) {
+//                         if (err) throw err;
+//                         res.render('upload', { message: message, userData: data, username: username });
+//                     });
+//                 }
+//             });
+//         }
+//     } else {
+//         username = req.session.username;
+//         email = req.session.email;
+//         message = '';
+//         if (!username && !email) {
+//             res.redirect("/login");
+//             return;
+//         } else {
+//             var sql = 'SELECT * FROM files';
+//             db.query(sql, function(err, data, fields) {
+//                 if (err) throw err;
+//                 res.render('upload', { message: message, userData: data, username: username });
+//             });
+//         }
+//     }
+// };
 
 
 
@@ -167,7 +168,7 @@ const { google } = require('googleapis');
 const CLIENT_ID = '826335259601-4bmomvi77v3kp3ouknuc7h09af96vvck.apps.googleusercontent.com'
 const CLIENT_SECRET = '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';
 const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
-const REFRESH_TOKEN = '1//04fNgIbzWLE_fCgYIARAAGAQSNwF-L9IraoAuk5gQrOppC9mFYi9VIUyjp9g2gsk5bstEr7-_f0_I37X1rRNad4QccCf9Ne75jcs';
+const REFRESH_TOKEN = '1//04WIkIOVzluawCgYIARAAGAQSNwF-L9Ir3zs1IEj3PEvjNpcJrpPJ1u1JYOex3WGJSVItctqezGdRKzdX3Un0m4FsIsMgcD4BxmA';
 const path = require('path');
 const fs = require('fs');
 const oauth2Client = new google.auth.OAuth2(
@@ -188,61 +189,67 @@ const drive = google.drive({
 exports.uploadFile = async function(req, res) {
     if (req.method == "POST") {
         username = req.session.username;
-        const file = req.file;
+        var filess = req.file;
         var fname = req.body.filenamess;
         folder_id = '148uViQAoFjoUn1JDobSIh5Y14b_oFVD_';
-        console.log(file);
-        if (!file) {
+        if (!filess) {
             message = 'Invalid file';
-            var sql = 'SELECT * FROM files';
-            db.query(sql, function(err, data) {
-                if (err) throw err;
-                res.render('upload', { message: message, userData: data, username: username });
-            });
+            username = req.session.username;
+            folder_id = '148uViQAoFjoUn1JDobSIh5Y14b_oFVD_';
+            email = req.session.email;
+            let _RESULT = null;
+            try {
+                const response = await drive.files.list({
+                    pageSize: 150,
+                    q: `'148uViQAoFjoUn1JDobSIh5Y14b_oFVD_' in parents`
+                });
+
+                if (response && response.data && response.data.files) {
+                    _RESULT = response.data.files;
+                }
+            } catch (ex) { console.log(ex); }
+            console.log(_RESULT);
+            res.render('upload', { message: message, userData: _RESULT, username: username });
         } else {
             try {
                 const response = await drive.files.create({
-
                     resource: {
                         name: fname, //This can be name of your choice
                         parents: [folder_id],
                     },
                     media: {
                         mimeType: req.file.mimeType,
-                        body: fs.createReadStream(file.path),
+                        body: fs.createReadStream(filess.path),
                     },
                 });
-
                 console.log(response.data);
                 message = 'Successful';
                 username = req.session.username;
-                var sql = 'SELECT * FROM files';
-
-
-                db.query(sql, function(err, data, fields) {
-                    if (err) throw err;
-                    res.render('upload', { message: message, userData: data, username: username });
-                });
-
+                folder_id = '148uViQAoFjoUn1JDobSIh5Y14b_oFVD_';
+                email = req.session.email;
+                let _RESULT = null;
 
                 try {
-                    var fileId = '1LWbqZaNtf6brk9Qro5z7_1HSgMH_v8gN';
-                    var dest = fs.createWriteStream('/tmp/image');
-                    drive.files.get({ fileId: fileId, alt: 'media' }, { responseType: 'stream' },
-                        function(err, res) {
-                            res.data
-                                .on('end', () => {
-                                    console.log('Done');
-                                })
-                                .on('error', err => {
-                                    console.log('Error', err);
-                                })
-                                .pipe(dest);
-                        }
-                    );
-                } catch (error) {
-                    console.log(error);
+
+                    const response = await drive.files.list({
+                        pageSize: 150,
+                        q: `'148uViQAoFjoUn1JDobSIh5Y14b_oFVD_' in parents`
+                    });
+
+                    if (response && response.data && response.data.files) {
+                        _RESULT = response.data.files;
+
+                    }
+                } catch (ex) { console.log(ex); }
+                if (!username && !email) {
+                    res.redirect("/login");
+                    return;
+                } else {
+                    console.log(_RESULT);
+                    res.render('upload', { message: message, userData: _RESULT, username: username });
+
                 }
+
 
             } catch (error) {
                 console.log(error.message);
@@ -250,19 +257,62 @@ exports.uploadFile = async function(req, res) {
         }
     } else {
         username = req.session.username;
-
+        folder_id = '148uViQAoFjoUn1JDobSIh5Y14b_oFVD_';
         email = req.session.email;
         message = '';
+        let _RESULT = null;
+        try {
+            const response = await drive.files.list({
+                pageSize: 150,
+                q: `'148uViQAoFjoUn1JDobSIh5Y14b_oFVD_' in parents`
+            });
+            if (response && response.data && response.data.files) {
+                _RESULT = response.data.files;
+            }
+        } catch (ex) { console.log(ex); }
         if (!username && !email) {
             res.redirect("/login");
             return;
         } else {
-            var sql = 'SELECT * FROM files';
-            db.query(sql, function(err, data, fields) {
-                if (err) throw err;
-                res.render('upload', { message: message, userData: data, username: username });
-            });
+            console.log(_RESULT);
+            res.render('upload', { message: message, userData: _RESULT, username: username });
+
         }
     }
 
 }
+
+
+exports.downloadFile = async function(req, res) {
+    var text = req.body.butt;
+    const myArray = text.split("+");
+    var id = myArray[0];
+    var name = myArray[1];
+    var mimetype = myArray[2].split("/");
+    mimetype = mimetype[1];
+    var dest = fs.createWriteStream("uploads/" + name + "." + mimetype);
+    try {
+        file.drive.files.get({ fileId: id, alt: "media" }, { responseType: "stream" },
+            (err, { data }) => {
+                if (err) {
+
+                    console.log(err);
+                    return;
+                }
+                data
+                    .on("end", () => console.log("Done."))
+                    .on("error", (err) => {
+                        console.log(err);
+                        return process.exit();
+                    })
+                    .pipe(dest);
+            }
+        );
+
+    } catch (ex) { console.log(ex); }
+    var tempFile = "uploads/Aniket-Bansal.pdf";
+    fs.readFile(tempFile, function(err, data) {
+        res.contentType("application/pdf");
+        res.send(data);
+    });
+};

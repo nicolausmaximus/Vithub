@@ -116,8 +116,12 @@
                             <td>
                                 <%=data.name %>
                             </td>
-                            <td><a href="/users/edit/<%=data.id%>">Edit</a></td>
-                            <td><a href="/users/delete/<%=data.id%>">Delete</a></td>
+                            <td>
+                                <form action="/dashboard/cs/dbms/view" method="POST">
+                                    <button name="butt" value='<%=data.id%>+<%=data.name%>+<%=data.mimeType%>'>View</button>
+                                </form>
+                            </td>
+                            <td><a href="/dashboard/cs/dbms/view" onclick="view()">Download</a></td>
                         </tr>
                         <% i++; }) %>
                             <% } else{ %>
@@ -144,6 +148,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="/js/scripts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/js/scripts.js"></script>
+    </iframe>
 </body>
 
 
