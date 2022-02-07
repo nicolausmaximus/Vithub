@@ -6,17 +6,16 @@ var path = require('path');
 const fs = require('fs');
 var session = require('express-session');
 const sessionstore = new session.MemoryStore();
-var port = process.env.PORT || 5439;
+var port = process.env.PORT || 5339;
 global.bcrypt = require('bcrypt');
 var connection = mysql.createConnection({
-    host: 'eu-cdbr-west-02.cleardb.net',
-    user: 'b9dff8be487326',
-    password: 'a7ac0c49',
-    database: 'heroku_c6ea23498e43ba4'
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'student_portal'
 });
 connection.connect();
 global.db = connection;
-
 var app = express();
 app.use(session({
     secret: 'secret',

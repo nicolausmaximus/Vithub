@@ -6,8 +6,9 @@ exports.index = async function(req, res) {
         var username = req.body.username;
         var password = req.body.password;
         if (username && password && email) {
-            db.query('SELECT password FROM accountss WHERE username = ? AND email=?', [username, email], async(error, results) => {
+            db.query('SELECT password FROM account WHERE username = ? AND email=?', [username, email], async(error, results) => {
                 if (error) throw error;
+
                 if (results.length > 0) {
                     const reslt = await bcrypt.compare(password, results[0].password);
                     console.log(res);
@@ -51,7 +52,7 @@ exports.register = async function(req, res) {
         const pwd = await bcrypt.hash(req.body.password, 10);
         if (un && pwd && emailid) {
             var values = { username: un, password: pwd, email: emailid };
-            db.query("INSERT INTO accountss SET ?", values, function(error, results, fields) {
+            db.query("INSERT INTO account SET ?", values, function(error, results, fields) {
                 if (error) {
                     message = 'Please enter valid details.';
                     res.render('registration', { message: message });
@@ -68,6 +69,7 @@ exports.register = async function(req, res) {
             message = 'Please enter valid details.';
             res.render('registration', { message: message });
         }
+
 
     } else {
         res.render('registration', { message: message });
