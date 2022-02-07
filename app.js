@@ -6,7 +6,7 @@ var path = require('path');
 const fs = require('fs');
 var session = require('express-session');
 const sessionstore = new session.MemoryStore();
-var port = process.env.PORT || 5739;
+var port = process.env.PORT || 5439;
 global.bcrypt = require('bcrypt');
 var connection = mysql.createConnection({
     host: 'eu-cdbr-west-02.cleardb.net',
@@ -16,8 +16,6 @@ var connection = mysql.createConnection({
 });
 connection.connect();
 global.db = connection;
-
-
 
 var app = express();
 app.use(session({
